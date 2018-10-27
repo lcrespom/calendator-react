@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 
-import { randomColor, date2html } from './utils'
+import { randomColor, getContrastingColor, date2html } from './utils'
 import Events from './Events/Events'
 import Calendar from './Calendar/Calendar'
 
@@ -28,6 +28,7 @@ class App extends Component {
 	changeEventHandler = (event) => {
 		let events = [...this.state.events]
 		let idx = events.findIndex(e => e.id === event.id)
+		event.txtcolor = getContrastingColor(event.color)
 		events[idx] = event
 		this.setState({ events })
 	}

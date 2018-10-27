@@ -6,12 +6,15 @@ let WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 
 function renderEvents(daynum, mnum, year, eventMap) {
-	//TODO add event entries that match this date
 	let dayId = date2html(new Date(year, mnum, daynum))
 	let events = eventMap[dayId]
-	if (!events) return
-	for (let event of events)
-		console.log(dayId, event)
+	if (!events) return null
+	return events.map(event =>
+		<div className="cal-event" key={event.id}
+			style={{ backgroundColor: event.color, color: event.txtcolor }}>
+			{event.name}
+		</div>
+	)
 }
 
 function renderDay(daynum, dim, mnum, year, eventMap) {

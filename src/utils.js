@@ -36,11 +36,29 @@ export function randomColor() {
 	return rgb2hex(r, g, b)
 }
 
+function parseHexColor(hexcol) {
+	let rgb = parseInt(hexcol.substr(1), 16)
+	return [rgb & 255, (rgb >> 8) & 255, (rgb >> 16) & 255]
+}
+
+function isDarkColor(r, g, b) {
+	let luminance = (r * 0.299 + g * 0.587 + b * 0.114) / 256
+	return luminance < 0.6
+}
+
+export function getContrastingColor(color) {
+	let [r, g, b] = parseHexColor(color)
+	return isDarkColor(r, g, b) ? '#ffffff' : '#000000'
+}
+
 
 //-------------------- Date utilities --------------------
 
 export function date2html(d) {
-	return d.toISOString().split('T')[0]
+	let yy = d.getFullYear()
+	let mm = d.getMonth() + 1
+	let dd = d.getDate()
+	return `${yy}-${mm}-${dd}`
 }
 
 export function daysInMonth(month, year) {
