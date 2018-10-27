@@ -9,7 +9,7 @@ function formGroup({
 	return (
 		<div className="form-group">
 			<label>{label}</label>
-			<input type={type} defaultValue={value} onChange={changed}
+			<input type={type} value={value} onChange={changed}
 				className="form-control" />
 			{' ' + after}
 		</div>

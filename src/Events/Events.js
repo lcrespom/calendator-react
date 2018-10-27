@@ -2,8 +2,9 @@ import React from 'react'
 import './Events.css'
 import Event from './Event'
 
-	function changeEventHandler(event) {
-	console.log(event)
+
+function changeEventHandler(event, props) {
+	props.changeEvent(event)
 }
 
 function events(props) {
@@ -18,7 +19,7 @@ function events(props) {
 			<div id="event-list">
 				{props.events.map(evt =>
 					<Event key={evt.id} event={evt}
-						changed={changeEventHandler} />
+						changed={event => changeEventHandler(event, props)} />
 				)}
 			</div>
 		</div>
