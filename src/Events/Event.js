@@ -4,7 +4,9 @@ import FormGroup from './FormGroup';
 
 function changeHandler(evt, props) {
 	let event = {...props.event}
-	event[evt.target.name] = evt.target.value
+	let v = evt.target.value
+	if (evt.target.type === 'number') v = parseInt(v)
+	event[evt.target.name] = v
 	props.changed(event)
 }
 

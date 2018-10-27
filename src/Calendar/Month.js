@@ -1,15 +1,20 @@
 import React from 'react'
 
-import { getMonthWeeks, dayOfWeek, daysInMonth } from '../utils'
+import { getMonthWeeks, dayOfWeek, daysInMonth, date2html } from '../utils'
 
 let WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 
-function renderEvents(mnum, year, events) {
+function renderEvents(daynum, mnum, year, eventMap) {
 	//TODO add event entries that match this date
+	let dayId = date2html(new Date(year, mnum, daynum))
+	let events = eventMap[dayId]
+	if (!events) return
+	for (let event of events)
+		console.log(dayId, event)
 }
 
-function renderDay(daynum, dim, mnum, year, events) {
+function renderDay(daynum, dim, mnum, year, eventMap) {
 	let classes = 'cal-day'
 	let isEmpty = daynum <= 0 || daynum > dim
 	if (isEmpty) classes += ' cal-empty'
@@ -19,27 +24,27 @@ function renderDay(daynum, dim, mnum, year, events) {
 				? null
 				: <div className="cal-cell">
 					{daynum}
-					{renderEvents(mnum, year, events)}
+					{renderEvents(daynum, mnum, year, eventMap)}
 				  </div>
 			}
 		</div>
 	)
 }
 
-function renderDays(mnum, year, events) {
+function renderDays(mnum, year, eventMap) {
 	let days = []
 	let totalDays = getMonthWeeks(mnum, year) * 7
 	let daynum = 1 - dayOfWeek(new Date(year, mnum, 1))
 	let dim = daysInMonth(mnum, year)
 	for (let i = 1; i <= totalDays; i++) {
-		days.push(renderDay(daynum, dim, mnum, year, events))
+		days.push(renderDay(daynum, dim, mnum, year, eventMap))
 		daynum++
 	}
 	return days
 }
 
 
-function month({ name, month, year, events }) {
+function month({ name, month, year, eventMap }) {
 	return (
 		<div className="cal-month-block">
 			<h2>{name}</h2>
@@ -47,7 +52,7 @@ function month({ name, month, year, events }) {
 				{WEEKDAYS.map(weekday =>
 					<span key={weekday} className="cal-weekday">{weekday}</span>
 				)}
-				{renderDays(month, year, events)}
+				{renderDays(month, year, eventMap)}
 			</div>
 		</div>
 	)

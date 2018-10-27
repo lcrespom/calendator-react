@@ -17,9 +17,9 @@ class App extends Component {
 			name: '',
 			color: randomColor(),
 			start: date2html(new Date()),
-			duration: '1',
-			every: '1',
-			repeat: '1'
+			duration: 1,
+			every: 1,
+			repeat: 1
 		}
 		let events = [newEvent, ...this.state.events]
 		this.setState({ events })
