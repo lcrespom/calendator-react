@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
-import Events from './Events/Events'
+
 import { randomColor, date2html } from './utils'
+import Events from './Events/Events'
+import Calendar from './Calendar/Calendar'
 
 
 class App extends Component {
@@ -45,7 +47,7 @@ class App extends Component {
 					changeEvent={this.changeEventHandler}
 					deleteEvent={this.deleteEventHandler}
 				/>
-				<div id="calendar"></div>
+				<Calendar events={this.state.events} />
 			</div>
 		);
 	}

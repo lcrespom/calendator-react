@@ -43,3 +43,18 @@ export function date2html(d) {
 	return d.toISOString().split('T')[0]
 }
 
+export function daysInMonth(month, year) {
+	return new Date(year, month + 1, 0).getDate()
+}
+
+export function dayOfWeek(date) {
+	let dow = date.getDay()
+	if (dow === 0) dow = 7	// Adjust week to Mon ... Sun pattern
+	return dow - 1
+}
+
+export function getMonthWeeks(month, year) {
+	let dim = daysInMonth(month, year)
+	let dow = dayOfWeek(new Date(year, month, 1))
+	return Math.ceil((dim + dow) / 7)
+}
