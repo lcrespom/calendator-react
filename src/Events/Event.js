@@ -14,7 +14,8 @@ function event(props) {
 			<hr/>
 			<FormGroup label="Name" name="name"
 				value={props.event.name}
-				changed={evt => changeHandler(evt, props)} />
+				changed={evt => changeHandler(evt, props)}
+				attrs={{ autoFocus:true }}/>
 			<FormGroup label="Color" type="color" name="color"
 				value={props.event.color}
 				changed={evt => changeHandler(evt, props)} />
