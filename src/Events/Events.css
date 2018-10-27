@@ -1,0 +1,44 @@
+#events {
+	position: fixed;
+	width: 16rem;
+	padding-right: 1rem;
+	border-right: 2px solid #eee;
+	height: calc(100% - 2rem);
+	overflow-y: auto;
+	font-size: 90%;
+	padding: 1ex;
+}
+
+.form-control {
+	display: inline-block;
+	height: 2rem;
+	font-size: 100%;
+}
+
+.form-control[type=text], .form-control[type=date] {
+	width: 10rem;
+}
+
+.form-control[type=color] {
+	width: 3em;
+	padding: 0.25ex 0.5ex;
+}
+
+.form-control[type=number] {
+	width: 4.5em;
+}
+
+.form-group {
+	margin-bottom: 1ex;
+}
+
+.form-group label {
+	width: 4em;
+	text-align: right;
+	margin-right: 1ex;
+	font-weight: bold;
+}
+
+.form-group button {
+	margin-top: 0.5em;
+}
