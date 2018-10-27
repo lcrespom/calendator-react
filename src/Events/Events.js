@@ -3,10 +3,6 @@ import './Events.css'
 import Event from './Event'
 
 
-function changeEventHandler(event, props) {
-	props.changeEvent(event)
-}
-
 function events(props) {
 	return (
 		<div id="events">
@@ -19,7 +15,8 @@ function events(props) {
 			<div id="event-list">
 				{props.events.map(evt =>
 					<Event key={evt.id} event={evt}
-						changed={event => changeEventHandler(event, props)} />
+						changed={event => props.changeEvent(event)}
+						deleted={event => props.deleteEvent(event)} />
 				)}
 			</div>
 		</div>

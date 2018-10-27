@@ -10,8 +10,7 @@ class App extends Component {
 	}
 
 	addEventHandler = () => {
-		let events = [...this.state.events]
-		events.push({
+		let newEvent = {
 			id: Date.now(),
 			name: '',
 			color: randomColor(),
@@ -19,7 +18,8 @@ class App extends Component {
 			duration: '1',
 			every: '1',
 			repeat: '1'
-		})
+		}
+		let events = [newEvent, ...this.state.events]
 		this.setState({ events })
 	}
 
@@ -30,12 +30,21 @@ class App extends Component {
 		this.setState({ events })
 	}
 
+	deleteEventHandler = (event) => {
+		let events = [...this.state.events]
+		let idx = events.findIndex(e => e.id === event.id)
+		events.splice(idx, 1)
+		this.setState({ events })
+	}
+
 	render() {
 		return (
 			<div id="main">
 				<Events events={this.state.events}
 					addEvent={this.addEventHandler}
-					changeEvent={this.changeEventHandler}/>
+					changeEvent={this.changeEventHandler}
+					deleteEvent={this.deleteEventHandler}
+				/>
 				<div id="calendar"></div>
 			</div>
 		);

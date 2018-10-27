@@ -36,7 +36,11 @@ function event(props) {
 				changed={evt => changeHandler(evt, 'repeat', props)} />
 			<div className="form-group">
 				<label />
-				<button className="btn btn-sm btn-warning">Remove event</button>
+				<button
+					onClick={_ => props.deleted(props.event)}
+					className="btn btn-sm btn-warning">
+					Remove event
+				</button>
 			</div>
 		</div>
 	)

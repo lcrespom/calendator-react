@@ -5,12 +5,11 @@ function noop() {}
 function formGroup({
 	label, type = 'text', value = '', after = '', attrs = {}, changed = noop
 }) {
-	//TODO: apply attrs
 	return (
 		<div className="form-group">
 			<label>{label}</label>
 			<input type={type} value={value} onChange={changed}
-				className="form-control" />
+				{...attrs} className="form-control" />
 			{' ' + after}
 		</div>
 	)
